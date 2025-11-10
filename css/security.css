@@ -1,0 +1,162 @@
+/* Security-focused CSS styles */
+
+/* Prevent text selection in sensitive areas */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide sensitive information */
+.sensitive {
+    filter: blur(0);
+    transition: filter 0.3s ease;
+}
+
+.sensitive.blur {
+    filter: blur(5px);
+}
+
+/* Prevent copy/paste in sensitive areas */
+.no-copy {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Secure input styling */
+.secure-input {
+    font-family: monospace;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.secure-input::after {
+    content: '🔒';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Rate limiting indicator */
+.rate-limited {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.rate-limited::before {
+    content: '⏱️ Please wait...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Security badge */
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #059669;
+    background: #ecfdf5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #a7f3d0;
+}
+
+/* Password strength indicator */
+.password-strength {
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.password-strength.weak {
+    background: #ef4444;
+    width: 33%;
+}
+
+.password-strength.medium {
+    background: #f59e0b;
+    width: 66%;
+}
+
+.password-strength.strong {
+    background: #10b981;
+    width: 100%;
+}
+
+/* Secure hover effects */
+.secure-hover:hover {
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
+}
+
+/* Loading overlay for sensitive operations */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border-radius: inherit;
+}
+
+/* Error states */
+.error-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Success states */
+.success-glow {
+    animation: glow 0.5s ease-in-out;
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+}
+
+/* Prevent drag and drop */
+.no-drag {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+/* Print styles - hide sensitive info */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    .sensitive {
+        filter: blur(10px) !important;
+    }
+}

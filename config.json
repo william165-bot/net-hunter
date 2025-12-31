@@ -1,0 +1,18 @@
+{
+  "github": {
+    "owner": "william165-bot",
+    "repo": "net-hunter",
+    "branch": "main",
+    "data_path": "data/users"
+  },
+  "auth": {
+    "admin_key": "Cand40df5a@@@",
+    "expiry_days": 365,
+    "allow_offline": true
+  },
+  "info": {
+    "description": "Authentication System using GitHub as Storage",
+    "version": "2.0",
+    "last_updated": "2025-12-31"
+  }
+}

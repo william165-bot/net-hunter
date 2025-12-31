@@ -1,0 +1,12 @@
+    :try_start_0
+    invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    :catch_0
+    move-exception v0
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
+
+    :goto_0

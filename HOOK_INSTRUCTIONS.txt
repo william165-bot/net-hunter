@@ -1,0 +1,128 @@
+# HOOK INSTRUCTIONS FOR LOGIN DIALOG
+
+## Method 1: Simple Hook (Recommended for Testing)
+Add this line right after `invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V` in your MainActivity's onCreate method:
+
+```smali
+invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V
+```
+
+## Method 2: Safe Hook with Error Handling (Recommended for Production)
+If Method 1 crashes, use this version with try-catch:
+
+```smali
+    :try_start_login
+    invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V
+    :try_end_login
+    .catch Ljava/lang/Exception; {:try_start_login .. :try_end_login} :catch_login
+
+    goto :after_login
+
+    :catch_login
+    move-exception v0
+    invoke-virtual {v0}, Ljava/lang/Exception;->printStackTrace()V
+
+    :after_login
+```
+
+## Where to Place the Hook
+
+In your MainActivity.smali file, find the onCreate method. It should look like this:
+
+```smali
+.method protected onCreate(Landroid/os/Bundle;)V
+    .locals 2    # or any number
+
+    # This is the super call - place hook RIGHT AFTER this line
+    invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+
+    # ADD HOOK HERE (Method 1 or Method 2)
+    invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V
+
+    # Rest of your onCreate code...
+    const v0, 0x7f030000
+    invoke-virtual {p0, v0}, Landroid/app/Activity;->setContentView(I)V
+    
+    # ... more code ...
+.end method
+```
+
+## Important Notes
+
+1. **DEX File Placement**: Make sure `classes2.dex` is in the root of your APK
+   - If your APK already has classes2.dex, rename yours to classes3.dex, classes4.dex, etc.
+   - The Android runtime will automatically load all classesN.dex files
+
+2. **Check .locals Value**: After adding the hook, if you use the try-catch version (Method 2), you might need to increase the `.locals` value by 1 (e.g., if it says `.locals 1`, change to `.locals 2`)
+
+3. **Context Parameter**: `p0` in onCreate is `this` (the Activity), which extends Context, so it's valid
+
+4. **Permissions**: Add internet permission to AndroidManifest.xml if not already present:
+   ```xml
+   <uses-permission android:name="android.permission.INTERNET" />
+   ```
+
+## Troubleshooting
+
+### If App Still Crashes
+
+1. **Check logcat**:
+   ```bash
+   adb logcat | grep -i "exception\|error\|fatal"
+   ```
+
+2. **Verify DEX is in APK**:
+   ```bash
+   unzip -l your-app.apk | grep classes
+   ```
+   Should show: classes.dex, classes2.dex (or classes3.dex if you renamed it)
+
+3. **Verify Class Exists**:
+   ```bash
+   strings classes2.dex | grep LoginDialog
+   ```
+   Should show: `Llogin/dialog/logindpmods/LoginDialog;`
+
+4. **Try Different Placement**: Sometimes you need to place the hook AFTER setContentView:
+   ```smali
+   .method protected onCreate(Landroid/os/Bundle;)V
+       invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+       
+       const v0, 0x7f030000
+       invoke-virtual {p0, v0}, Landroid/app/Activity;->setContentView(I)V
+       
+       # Try placing hook HERE instead
+       invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V
+   .end method
+   ```
+
+5. **Check for MultiDex**: If your app uses MultiDex, you might need to add the DEX to the MultiDex configuration
+
+## Alternative: Hook in onResume Instead
+
+If onCreate doesn't work, try hooking in onResume instead:
+
+```smali
+.method protected onResume()V
+    .locals 1
+
+    invoke-super {p0}, Landroid/app/Activity;->onResume()V
+    
+    invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V
+    
+    return-void
+.end method
+```
+
+## Verification Steps
+
+After building your APK:
+
+1. Install on device: `adb install -r your-app.apk`
+2. Run app and check logcat: `adb logcat -c && adb logcat`
+3. Look for:
+   - "LoginDialog" messages
+   - Any exceptions or errors
+   - Network requests to GitHub
+
+If you see errors, copy the full error message from logcat and we can debug further.

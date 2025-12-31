@@ -1,0 +1,1 @@
+invoke-static {p0}, Llogin/dialog/logindpmods/LoginDialog;->show(Landroid/content/Context;)V

@@ -5,8 +5,8 @@ class URLExtractor {
         this.auth = authManager;
         this.security = new SecurityManager();
         this.currentExtraction = null;
-        this.maxUrls = 1000; // Free tier limit
-        this.premiumMaxUrls = 10000; // Premium tier limit
+        this.maxUrls = 50000; // Unlimited tier
+        this.premiumMaxUrls = 50000; // Unlimited tier
         this.rateLimiter = this.security.createRateLimiter(10, 60000); // 10 extractions per minute
     }
 
@@ -106,10 +106,8 @@ class URLExtractor {
 
     // Get max URLs limit based on user tier
     getMaxUrls() {
-        if (this.auth.isPremium()) {
-            return this.premiumMaxUrls;
-        }
-        return this.maxUrls;
+        // All users get unlimited access
+        return this.premiumMaxUrls;
     }
 
     // Check if user can extract more URLs
@@ -557,7 +555,8 @@ class URLExtractor {
             downloadBtn.addEventListener('click', () => {
                 const urls = Array.from(document.querySelectorAll('.url-text')).map(el => el.textContent);
                 if (urls.length > 0) {
-                    const format = this.auth.isPremium() ? 'json' : 'txt';
+                    // All users can export in any format (default to json)
+                    const format = 'json';
                     this.exportUrls(urls, format);
                     window.app.showToast(`Exported ${urls.length} URLs as ${format.toUpperCase()}`, 'success');
                 }

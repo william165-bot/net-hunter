@@ -90,10 +90,10 @@ Deploy to any static hosting service:
 - Automatic 1-day trial activation
 
 ### Premium Features
-- **Free Tier**: 1,000 URLs per extraction
-- **Premium Tier**: 10,000 URLs per extraction
-- **Export Formats**: Free (TXT), Premium (JSON, CSV, HTML)
-- **History**: Free users have limited storage
+- **All Users**: 50,000 URLs per extraction (Unlimited)
+- **All Tiers**: All users have premium access
+- **Export Formats**: All formats available (TXT, JSON, CSV, HTML)
+- **History**: Unlimited storage for all users
 
 ### Admin Access
 - Username: `nethunter`

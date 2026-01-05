@@ -492,13 +492,13 @@ class StorageManager {
     }
 
     isPremiumActive(user) {
-        if (!user?.premiumUntil) return false;
-        return Date.now() < user.premiumUntil;
+        // All users have premium access
+        return user ? true : false;
     }
 
     isTrialActive(user) {
-        if (!user?.trialStart) return false;
-        return Date.now() < this.addDays(user.trialStart, 1);
+        // All users have unlimited trial
+        return user ? true : false;
     }
 
     // Storage quota management

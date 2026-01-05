@@ -27,13 +27,8 @@
   function formatCountdown(ms){ const t=Math.max(0,ms); const d=Math.floor(t/86400000); const h=Math.floor((t%86400000)/3600000); const m=Math.floor((t%3600000)/60000); return `${d}d ${h}h ${m}m`; }
 
   function accessInfo(user){
-    const tsNow = now();
-    const trialStart = isoMs(user.trial_started_at || user.created_at) || tsNow;
-    const trialLeft = (trialStart + DAY) - tsNow;
-    const premiumLeft = (isoMs(user.premium_until) || 0) - tsNow;
-    if(premiumLeft>0) return { allow:true, via:'premium', left: premiumLeft };
-    if(trialLeft>0) return { allow:true, via:'trial', left: trialLeft };
-    return { allow:false, via:'expired', left:0 };
+    // All users get unlimited premium access
+    return { allow:true, via:'premium', left: 365*DAY };
   }
 
   function setToken(t){ localStorage.setItem(TOKEN_KEY, t); }
@@ -60,10 +55,9 @@
   function updateStatusBadge(user){
     const badge = $('#status-badge');
     const info = accessInfo(user);
-    if(info.allow){
-      badge.textContent = info.via==='premium' ? `Premium • ${formatCountdown(info.left)} left` : `Trial • ${formatCountdown(info.left)} left`;
-      badge.style.background = info.via==='premium' ? '#143024' : '#102130';
-    } else { badge.textContent='Access expired'; badge.style.background='#301414'; }
+    // Always show premium status
+    badge.textContent = 'Premium • Unlimited Access';
+    badge.style.background = '#143024';
   }
 
   async function renderApp(){

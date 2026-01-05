@@ -197,32 +197,21 @@ class AuthManager {
 
     // Check if current user is premium
     isPremium() {
-        return this.currentUser && (
-            this.storage.isPremiumActive(this.currentUser) || 
-            this.storage.isTrialActive(this.currentUser)
-        );
+        // All users now have premium access
+        return this.currentUser ? true : false;
     }
 
     // Check if trial is active
     isTrialActive() {
-        return this.currentUser && this.storage.isTrialActive(this.currentUser);
+        // All users have unlimited trial
+        return this.currentUser ? true : false;
     }
 
     // Get days remaining in trial/premium
     getDaysRemaining() {
         if (!this.currentUser) return 0;
-
-        let endDate;
-        if (this.storage.isTrialActive(this.currentUser)) {
-            endDate = this.storage.addDays(this.currentUser.trialStart, 1);
-        } else if (this.storage.isPremiumActive(this.currentUser)) {
-            endDate = this.currentUser.premiumUntil;
-        } else {
-            return 0;
-        }
-
-        const remaining = Math.ceil((endDate - Date.now()) / (1000 * 60 * 60 * 24));
-        return Math.max(0, remaining);
+        // Return unlimited days (365)
+        return 365;
     }
 
     // Update user profile

@@ -1,0 +1,13 @@
+{
+  "name": "ai-agent-pro",
+  "version": "1.0.0",
+  "description": "Intelligent AI Agent Platform for Task Execution",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8000",
+    "serve": "npx serve ."
+  },
+  "keywords": ["ai", "agent", "automation", "tasks", "ai-assistant"],
+  "author": "AI Agent Pro",
+  "license": "MIT"
+}

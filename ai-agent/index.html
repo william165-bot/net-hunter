@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Pro - Your Intelligent Task Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="url(#gradient)"/>
+                        <path d="M16 8L22 12V20L16 24L10 20V12L16 8Z" fill="white" opacity="0.9"/>
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
+                                <stop offset="0%" stop-color="#6366f1"/>
+                                <stop offset="100%" stop-color="#8b5cf6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span class="logo-text">AI Agent Pro</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#agents">Agents</a>
+                    <a href="#app" onclick="showApp(event)">Launch App</a>
+                </div>
+            </div>
+        </nav>
+
+        <div id="landing-page">
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="badge">Powered by Advanced AI</div>
+                    <h1 class="hero-title">Your Intelligent<br><span class="gradient-text">AI Task Agent</span></h1>
+                    <p class="hero-description">Execute complex tasks, generate code, analyze data, browse the web, and more with cutting-edge AI agents. All in one powerful platform.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="showApp(event)">
+                            <span>Get Started Free</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 0L12.5 7.5H20L14 12L16.5 20L10 15L3.5 20L6 12L0 7.5H7.5L10 0Z"/>
+                            </svg>
+                            <span>View on GitHub</span>
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-value">10+</div>
+                            <div class="stat-label">AI Models</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">50+</div>
+                            <div class="stat-label">Task Types</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Open Source</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="features">
+                <div class="section-header">
+                    <h2>Powerful Features</h2>
+                    <p>Everything you need for intelligent task automation</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI Task Execution</h3>
+                        <p>Execute complex tasks with natural language instructions. From data analysis to code generation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>Code Generation</h3>
+                        <p>Generate production-ready code in multiple languages with AI-powered assistance.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3>Web Browsing</h3>
+                        <p>AI agents can browse the web, extract information, and perform research automatically.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Data Analysis</h3>
+                        <p>Analyze datasets, generate insights, and create visualizations with intelligent agents.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Planning & Memory</h3>
+                        <p>Agents plan multi-step tasks and remember context across conversations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Fast Execution</h3>
+                        <p>Optimized for speed with parallel task execution and smart caching.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="agents" class="agents-section">
+                <div class="section-header">
+                    <h2>Pre-built AI Agents</h2>
+                    <p>Specialized agents for different tasks</p>
+                </div>
+                <div class="agents-grid">
+                    <div class="agent-card">
+                        <div class="agent-header">
+                            <span class="agent-emoji">💼</span>
+                            <h3>Research Agent</h3>
+                        </div>
+                        <p>Deep research on any topic with web search, analysis, and comprehensive reports.</p>
+                        <div class="agent-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Web Search</span>
+                        </div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-header">
+                            <span class="agent-emoji">👨‍💻</span>
+                            <h3>Code Agent</h3>
+                        </div>
+                        <p>Generate, debug, and optimize code across multiple programming languages.</p>
+                        <div class="agent-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">SQL</span>
+                        </div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-header">
+                            <span class="agent-emoji">📈</span>
+                            <h3>Data Agent</h3>
+                        </div>
+                        <p>Analyze data, create visualizations, and generate insights from your datasets.</p>
+                        <div class="agent-tags">
+                            <span class="tag">Analytics</span>
+                            <span class="tag">Visualization</span>
+                        </div>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-header">
+                            <span class="agent-emoji">✍️</span>
+                            <h3>Writing Agent</h3>
+                        </div>
+                        <p>Create content, write reports, and generate professional documents.</p>
+                        <div class="agent-tags">
+                            <span class="tag">Writing</span>
+                            <span class="tag">Reports</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="app-interface" style="display: none;">
+            <div class="app-container">
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <div class="logo-small">
+                            <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
+                                <rect width="32" height="32" rx="6" fill="url(#gradient2)"/>
+                                <path d="M16 8L22 12V20L16 24L10 20V12L16 8Z" fill="white" opacity="0.9"/>
+                                <defs>
+                                    <linearGradient id="gradient2" x1="0" y1="0" x2="32" y2="32">
+                                        <stop offset="0%" stop-color="#6366f1"/>
+                                        <stop offset="100%" stop-color="#8b5cf6"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <button class="new-chat-btn" onclick="newChat()">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            New Chat
+                        </button>
+                    </div>
+                    <div class="sidebar-content">
+                        <div class="agent-selector">
+                            <label>Select Agent</label>
+                            <select id="agent-select" onchange="selectAgent()">
+                                <option value="general">🤖 General Agent</option>
+                                <option value="research">💼 Research Agent</option>
+                                <option value="code">👨‍💻 Code Agent</option>
+                                <option value="data">📊 Data Agent</option>
+                                <option value="writing">✍️ Writing Agent</option>
+                            </select>
+                        </div>
+                        <div class="chat-history" id="chat-history">
+                            <div class="history-section">
+                                <div class="history-label">Recent Chats</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-footer">
+                        <button class="back-btn" onclick="backToLanding()">
+                            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                <path d="M15 10H5M5 10L10 15M5 10L10 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Back to Home
+                        </button>
+                    </div>
+                </aside>
+
+                <main class="chat-main">
+                    <div class="chat-header">
+                        <div class="header-info">
+                            <h2 id="agent-title">AI Agent</h2>
+                            <p id="agent-description">Ask me anything - I can help with research, coding, analysis, and more</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="icon-btn" title="Settings">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M16.5 10C16.5 10.5 16.8 10.9 17.2 11.1L18 11.5C18.3 11.7 18.5 12 18.5 12.4V13.6C18.5 14 18.3 14.3 18 14.5L17.2 14.9C16.8 15.1 16.5 15.5 16.5 16C16.5 16.5 16.8 16.9 17.2 17.1L18 17.5C18.3 17.7 18.5 18 18.5 18.4V19.6" stroke="currentColor" stroke-width="1.5"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="welcome-message">
+                            <div class="welcome-icon">
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <circle cx="32" cy="32" r="32" fill="url(#welcomeGradient)"/>
+                                    <path d="M32 16L44 24V40L32 48L20 40V24L32 16Z" fill="white" opacity="0.9"/>
+                                    <defs>
+                                        <linearGradient id="welcomeGradient" x1="0" y1="0" x2="64" y2="64">
+                                            <stop offset="0%" stop-color="#6366f1"/>
+                                            <stop offset="100%" stop-color="#8b5cf6"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h2>Welcome to AI Agent Pro</h2>
+                            <p>I'm your intelligent assistant powered by advanced AI. I can help you with:</p>
+                            <div class="capabilities">
+                                <div class="capability">
+                                    <span class="cap-icon">🔍</span>
+                                    <span>Research & Information</span>
+                                </div>
+                                <div class="capability">
+                                    <span class="cap-icon">💻</span>
+                                    <span>Code Generation</span>
+                                </div>
+                                <div class="capability">
+                                    <span class="cap-icon">📊</span>
+                                    <span>Data Analysis</span>
+                                </div>
+                                <div class="capability">
+                                    <span class="cap-icon">✨</span>
+                                    <span>Creative Content</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="suggestions">
+                            <div class="suggestion-card" onclick="sendSuggestion('Write a Python script to analyze CSV data')">
+                                <div class="sug-icon">🐍</div>
+                                <div class="sug-text">Write a Python script to analyze CSV data</div>
+                            </div>
+                            <div class="suggestion-card" onclick="sendSuggestion('Research the latest trends in AI technology')">
+                                <div class="sug-icon">🔬</div>
+                                <div class="sug-text">Research latest AI trends</div>
+                            </div>
+                            <div class="suggestion-card" onclick="sendSuggestion('Create a responsive landing page')">
+                                <div class="sug-icon">🎨</div>
+                                <div class="sug-text">Create a responsive landing page</div>
+                            </div>
+                            <div class="suggestion-card" onclick="sendSuggestion('Explain quantum computing in simple terms')">
+                                <div class="sug-icon">🧠</div>
+                                <div class="sug-text">Explain quantum computing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-container">
+                        <div class="input-wrapper">
+                            <button class="attach-btn" title="Attach file">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M16 6L10 12L4 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <textarea 
+                                id="user-input" 
+                                placeholder="Ask me anything..." 
+                                rows="1"
+                                onkeydown="handleKeyPress(event)"
+                            ></textarea>
+                            <button class="send-btn" onclick="sendMessage()" id="send-btn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M18 2L9 11M18 2L12 18L9 11M18 2L2 8L9 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="input-footer">
+                            <span class="model-info" id="model-info">Powered by AI</span>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
